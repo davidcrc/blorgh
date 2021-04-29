@@ -32,3 +32,36 @@ for create engine with articles...
 - Generate controller for comments
 
     rails generate controller comments
+
+> Connect to project
+
+    - Get or create a project ( rails new unicorn )
+
+    - Add to routes.rb: gem 'blorgh', path: 'engines/blorgh'
+
+    - run: bundle
+
+    -Mount in unicor project Routes: mount Blorgh::Engine, at: "/blog"
+
+> Setup engine in project
+
+    - It will copy migrations: bin/rails blorgh:install:migrations
+    or
+    copy all migrations ** : bin/rails railties:install:migrations
+
+    bin/rails db:migrate
+    -  f you would like to run migrations only from one engine, you can do it by specifying SCOPE:
+        bin/rails db:migrate SCOPE=blorgh
+    
+    bin/rails server    
+
+
+Notes:
+
+> Errors:
+
+    - Sprockets::Rails::Helper::AssetNotPrecompiled in Blorgh::Articles#index, solution:
+        config/initializers/assets.rb
+        Rails.application.config.assets.precompile += %w( blorgh/application.css )
+
+
