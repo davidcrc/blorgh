@@ -78,8 +78,23 @@ Notes:
 - often engine controllers need to access methods in the main application's ApplicationController. An easy way to provide this access is to change the engine's scoped ApplicationController
 
     app/controllers/blorgh/application_controller.rb
-    
+
     module Blorgh
         class ApplicationController < ::ApplicationController
         end
     end
+
+
+> The next step is to make the class that represents a User in the application customizable for the engine.
+
+    - lib/blorgh.rb
+
+        mattr_accessor :author_class
+
+    -  app/models/blorgh/article.rb
+
+        belongs_to :author, class_name: Blorgh.author_class.to_s
+        
+        ...
+
+        self.author = Blorgh.author_class.constantize.find_or_create_by(name: author_name)
