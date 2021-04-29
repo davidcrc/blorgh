@@ -65,3 +65,21 @@ Notes:
         Rails.application.config.assets.precompile += %w( blorgh/application.css )
 
 
+<!-- Next part: Using a Class Provided by the Application -->
+
+
+- First, the author_name text field needs to be added to the app/views/blorgh/articles/_form.html.erb partial inside the engine. ...
+
+
+> author_id column added to the blorgh_articles table
+
+    bin/rails generate migration add_author_id_to_blorgh_articles author_id:integer
+
+- often engine controllers need to access methods in the main application's ApplicationController. An easy way to provide this access is to change the engine's scoped ApplicationController
+
+    app/controllers/blorgh/application_controller.rb
+    
+    module Blorgh
+        class ApplicationController < ::ApplicationController
+        end
+    end
