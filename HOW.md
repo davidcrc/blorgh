@@ -13,7 +13,7 @@ for create engine with articles...
 
     bin/rails db:migrate
 
-    - In test/dummy folder: bin/rails serveren 
+    - In test/dummy folder: bin/rails server
 
     url: http://localhost:3000/blorgh/articles or http://localhost:3000/blorgh
 

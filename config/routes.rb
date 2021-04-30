@@ -4,4 +4,6 @@ Blorgh::Engine.routes.draw do
   resources :articles do
     resources :comments
   end
+
+  get '/testing', to: 'articles#testing_controller'
 end

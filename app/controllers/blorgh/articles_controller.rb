@@ -4,6 +4,10 @@ module Blorgh
   class ArticlesController < ApplicationController
     before_action :set_article, only: [:show, :edit, :update, :destroy]
 
+    def testing_controller
+      puts "Hola testing"
+    end
+    
     # GET /articles
     def index
       @articles = Article.all
